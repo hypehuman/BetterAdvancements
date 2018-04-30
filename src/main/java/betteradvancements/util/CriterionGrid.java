@@ -80,11 +80,11 @@ public class CriterionGrid {
     // Of all the possible grids whose aspect ratio is less than the maximum, this method returns the one with the smallest number of rows.
     // If there is no such grid, this method returns a single-column grid.
     public static CriterionGrid findOptimalCriterionGrid(Advancement advancement, AdvancementProgress progress, double maxAspectRatio, FontRenderer renderer) {
-        if (progress == null || progress.isDone()) {
+        if (progress == null/* || progress.isDone()*/) {
             return CriterionGrid.empty;
         }
         Map<String, Criterion> criteria = advancement.getCriteria();
-        if (criteria.size() <= 1) {
+        if (criteria.size() < 1) {
             return CriterionGrid.empty;
         }
         boolean anyObtained = false;
@@ -103,7 +103,7 @@ public class CriterionGrid {
             }
         }
         if (!anyObtained) {
-            return CriterionGrid.empty;
+            //return CriterionGrid.empty;
         }
         if (!CriterionGrid.showSpoilers) {
             cellContents.add(" §4x§  §o" + numUnobtained + " remaining");
